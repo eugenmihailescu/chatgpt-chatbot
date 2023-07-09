@@ -18,8 +18,14 @@ Install dependencies:
 npm Install
 ```
 
-Run the bot:
+Run the chatbot:
 
 ```bash
 npm start
+```
+
+Run the chatbot as a Docker container:
+
+```bash
+docker compose up
 ```
