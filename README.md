@@ -29,3 +29,9 @@ Run the chatbot as a Docker container:
 ```bash
 docker compose up
 ```
+
+Run the chatbot as a Docker container from its public Docker image:
+
+```bash
+docker run -p 3000:3000 -it docker.pkg.github.com/eugenmihailescu/chatgpt-chatbot/chatgpt-chatbot:v1
+```

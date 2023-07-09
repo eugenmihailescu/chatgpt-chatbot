@@ -1,6 +1,7 @@
 services:
   node:
-    image: "node:14-slim"
+    build: .
+    image: docker.pkg.github.com/eugenmihailescu/chatgpt-chatbot/chatgpt-chatbot:v1
     user: "node"
     working_dir: /home/node/app
     environment:
