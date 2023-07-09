@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenAI chatbox example</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid main">
+      <!-- header -->
+      <div class="row sticky-top text-bg-dark">
+        <div
+          class="col-1 px-0 align-self-center text-center"
+          title="Settings"
+          data-bs-toggle="modal"
+          data-bs-target="#modal_settings"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            class="bi bi-gear text-bg-secondary p-1 rounded-1"
+            viewBox="0 0 16 16"
+            role="button"
+          >
+            <path
+              d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"
+            />
+            <path
+              d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"
+            />
+          </svg>
+        </div>
+
+        <div class="col-10 text-center">
+          <span class="h1 text-secondary">OpenAI Chatbox Example</span>
+        </div>
+        <div
+          class="col-1 px-0 align-self-center text-center"
+          title="Clear conversation history"
+        >
+          <svg
+            id="clear_history"
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            fill="currentColor"
+            class="bi bi-trash3 text-bg-danger p-1 rounded-1"
+            viewBox="0 0 16 16"
+            role="button"
+          >
+            <path
+              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- message list -->
+      <div class="row mb-5 pb-2">
+        <div class="col p-1">
+          <ul id="message_list" class="list-group list-group-flush"></ul>
+        </div>
+      </div>
+
+      <!-- error box -->
+      <div class="row d-none error mb-5">
+        <div class="col">
+          <div class="alert alert-danger" role="alert">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 me-2"
+              viewBox="0 0 16 16"
+              role="img"
+              aria-label="Danger:"
+              style="height: 1rem"
+            >
+              <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+              />
+            </svg>
+
+            <span class="error-message"></span>
+
+            <button
+              type="button"
+              class="btn-close float-end"
+              aria-label="Close"
+              onclick="renderError()"
+            ></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- send message form -->
+      <form class="row fixed-bottom text-bg-light pt-1 chat">
+        <div class="col m-3 mt-0">
+          <div class="input-group">
+            <input
+              id="input_message"
+              type="text"
+              class="form-control"
+              placeholder="Send a message"
+              required
+              aria-label="Send a message"
+              aria-describedby="btn_send_message"
+              autofocus
+            />
+            <button
+              type="submit"
+              class="input-group-text text-bg-info"
+              id="btn_send_message"
+              title="Send message to ChatGPT"
+            >
+              <span
+                class="spinner-border spinner-border-sm message-sending d-none"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden message-sending d-none"
+                >Sending message...</span
+              >
+              <svg
+                class="message-send"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-send"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="text-center" style="font-size: 0.5rem">
+            Sample chatbox application using
+            <a href="https://platform.openai.com/overview" target="_blank"
+              >OpenAI</a
+            >
+            <a
+              href="https://platform.openai.com/docs/guides/gpt/chat-completions-api"
+              target="_blank"
+              >Chat Completion API</a
+            >
+            (<a
+              id="openai-model"
+              href="https://platform.openai.com/docs/models/%OPENAI_MODEL_GROUP%"
+              target="_blank"
+              >%OPENAI_MODEL%</a
+            >)
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- settings modalbox -->
+    <div
+      class="modal fade"
+      id="modal_settings"
+      tabindex="-1"
+      aria-labelledby="modal-settings-label"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modal-settings-label">Settings</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="openai_model" class="col-form-label"
+                  >OpenAI API model:</label
+                >
+                <select
+                  class="form-select"
+                  aria-label="OpenAI API model"
+                  id="openai_model"
+                >
+                  %OPENAI_MODELS%
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="openai_api_key" class="col-form-label"
+                  >OpenAI API key:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="openai_api_key"
+                  required
+                  value="%OPENAI_API_KEY%"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="openai_api_type" class="col-form-label"
+                  >API type:</label
+                >
+                <select
+                  class="form-select"
+                  aria-label="OpenAI API type"
+                  id="openai_api_type"
+                  required
+                >
+                  %OPENAI_TYPES%
+                </select>
+              </div>
+              <!-- error box -->
+              <div class="row d-none error">
+                <div class="col">
+                  <div class="alert alert-danger" role="alert">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="flex-shrink-0 me-2"
+                      viewBox="0 0 16 16"
+                      role="img"
+                      aria-label="Danger:"
+                      style="height: 1rem"
+                    >
+                      <path
+                        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                      />
+                    </svg>
+
+                    <span class="error-message"></span>
+
+                    <button
+                      type="button"
+                      class="btn-close float-end"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // index.html.js script placeholder
+    </script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
